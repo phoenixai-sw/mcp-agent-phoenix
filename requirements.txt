@@ -1,2 +1,8 @@
-openai
-openai-agents
+streamlit==1.44.1
+mcp==1.6.0
+openai==1.70.0
+openai-agents==0.0.8
+youtube-transcript-api==1.0.3
+python-dotenv==1.1.0
+requests==2.32.3
+nest-asyncio==1.6.0
