@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "mcp-test": {
-      "command": "./venv/bin/python",
+      "command": "python",
       "args": [
         "./2_mcp_server.py"
       ]
