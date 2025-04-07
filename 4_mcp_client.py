@@ -1,8 +1,3 @@
-async for event in result.stream_events():
-    print("DEBUG: Received event:", event)
-    # 기존 처리 코드...
-
-
 import sys
 import asyncio
 import streamlit as st
@@ -24,7 +19,6 @@ async def setup_mcp_servers():
     # mcp.json 파일에서 설정 읽기
     with open('mcp.json', 'r') as f:
         config = json.load(f)
-    
     # 구성된 MCP 서버들을 순회
     for server_name, server_config in config.get('mcpServers', {}).items():
         mcp_server = MCPServerStdio(
@@ -59,13 +53,11 @@ async def process_user_message():
     placeholder = st.empty()
 
     async for event in result.stream_events():
-        # LLM 응답 토큰 스트리밍 처리
         if event.type == "raw_response_event" and isinstance(event.data, ResponseTextDeltaEvent):
             response_text += event.data.delta or ""
             with placeholder.container():
                 with st.chat_message("assistant"):
                     st.markdown(response_text)
-        # 도구 호출 이벤트 처리
         elif event.type == "run_item_stream_event":
             item = event.item
             if item.type == "tool_call_item":
@@ -76,7 +68,7 @@ async def process_user_message():
         "role": "assistant",
         "content": response_text
     })
-    # 비동기 종료 처리
+    # MCP 서버 종료 처리
     for server in mcp_servers:
         await server.__aexit__(None, None, None)
 
