@@ -160,3 +160,6 @@ def get_channel_info(video_url: str) -> dict:
 if __name__ == "__main__":
     print("Starting MCP server...")
     mcp.run()
+
+
+    print("DEBUG: Starting MCP server...")

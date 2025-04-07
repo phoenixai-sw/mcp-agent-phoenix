@@ -19,8 +19,10 @@ async def setup_mcp_servers():
     # mcp.json 파일에서 설정 읽기
     with open('mcp.json', 'r') as f:
         config = json.load(f)
+
     # 구성된 MCP 서버들을 순회
     for server_name, server_config in config.get('mcpServers', {}).items():
+        print(f"DEBUG: Attempting to connect to MCP server: {server_name}")
         mcp_server = MCPServerStdio(
             params={
                 "command": server_config.get("command"),
@@ -29,7 +31,9 @@ async def setup_mcp_servers():
             cache_tools_list=True
         )
         await mcp_server.connect()
+        print(f"DEBUG: Successfully connected to MCP server: {server_name}")
         servers.append(mcp_server)
+
     return servers
 
 # 에이전트 설정 함수
@@ -68,6 +72,7 @@ async def process_user_message():
         "role": "assistant",
         "content": response_text
     })
+
     # MCP 서버 종료 처리
     for server in mcp_servers:
         await server.__aexit__(None, None, None)
