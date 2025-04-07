@@ -1,0 +1,10 @@
+{
+    "mcpServers": {
+      "mcp-test": {
+        "command": "C:\\mcp-agent-phoenix\\python_mcp_agent-main\\venv\\Scripts\\python.exe",
+        "args": [
+          "C:\\mcp-agent-phoenix\\python_mcp_agent-main\\2_mcp_server.py"
+        ]
+      }
+    }
+  }
