@@ -1,4 +1,4 @@
-from agents import Agent, Runner
+pyfrom agents import Agent, Runner
 from dotenv import load_dotenv
 load_dotenv()
 def main():

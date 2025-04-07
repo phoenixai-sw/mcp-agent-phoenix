@@ -1,3 +1,8 @@
+async for event in result.stream_events():
+    print("Received event:", event)
+    # 기존 스트림 처리 코드
+
+
 import sys
 import asyncio
 import streamlit as st
